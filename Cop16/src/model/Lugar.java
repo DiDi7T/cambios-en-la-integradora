@@ -1,25 +1,26 @@
 package model;
 import java.util.Calendar;
 
+
 public class Lugar {
 	
 	private String nombre;
 	private double area;
-	private Tipo tipo; //Pendiente hacer clase numeracion para ripo y para departamento
-	private String date;//queda pendiente definir como tomar la fecha usando calendar
+	private String tipo; //Pendiente hacer clase numeracion para ripo y para departamento
+	private Calendar date;//queda pendiente definir como tomar la fecha usando calendar
 	private String foto; 
 	private double recursos;
-	private Departamento departamento;
+	private String departamento;
 	
 	
 	//constructor
-	public Lugar (String nombre, double area, Tipo tipo, String date, String foto, double recursos, Departamento departamento) {        
+	public Lugar (String nombre, double area, String tipo, String foto, double recursos, String departamento) {        
 	                                                                       // en java el atributo no se puede llamar igual a los parametros para poder que funcione añadimos this. codigo o se cambia el nombre del parametro, this es el atributo 
 	
 		this.nombre = nombre; 
 		this.area = area;
 		this.tipo= tipo;
-		this.date = date;
+		this.date = Calendar.getInstance();
 		this.foto = foto;
 		this.recursos = recursos;
 		this.departamento = departamento;
@@ -36,7 +37,7 @@ public class Lugar {
 		msg+= "Nombre:" + nombre;
 		msg += "\nArea: " + area;
 		msg += "\nTipo: " + tipo;
-		msg += "\nDate: " + date;
+		msg += "\nDate: " + date.getTime();
 		msg += "\nFoto:" + foto;
 		msg += "\nRecursos:" + recursos;
 		msg += "\nDepartamento:" + recursos;
@@ -55,4 +56,8 @@ public class Lugar {
 		return this.area;
 		
 	}
+	
+	
 }
+
+
