@@ -18,7 +18,7 @@ public class Ejecutable{
 	}
 	
 	public Ejecutable () {
-		Lugar dodo = new Lugar("nombre",23000,"tipo", "foto", 25,"departamento");
+		Lugar dodo = new Lugar("nombre","VALLE",23000,"tipo", "foto", 25,"departamento");
 		System.out.println(dodo.toString());
 	}
 	
