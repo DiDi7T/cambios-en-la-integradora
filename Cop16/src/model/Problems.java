@@ -1,0 +1,9 @@
+package model;
+
+public enum Problems {
+	FALTA_DE_HOSPITAL,
+	FALTA_DE_ESCUELA,
+	FALTA_DE_AGUA_POTABLE,
+	FALTA_DE_ACCESO_A_UNA_ALIMENTACION_BASICA
+	
+}

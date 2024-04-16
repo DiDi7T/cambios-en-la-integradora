@@ -1,38 +1,42 @@
 package model;
+import model.TypeProduct;
 
 public class Product{
-	private String nombre;
-	private double porcentaje;
-	private TypeProduct tipo;
-	private boolean fabricacion;
+	private Comunity comunity;
+	private String name;
+	private double percentage;
+	private TypeProduct type;
+	private boolean making;
 	
 	
-	public Product(String nombre, double porcentaje, TypeProduct tipo, boolean fabricacion){
-		this.nombre=nombre;
-		this.porcentaje=porcentaje;
-		this.tipo=tipo;
-		this.fabricacion=fabricacion;
+	public Product(Comunity comunity,String name, double percentagepercentage, TypeProduct type, boolean making){
+		this.name=name;
+		this.percentage=percentage;
+		this.type=type;
+		this.making=making;
 		
 	}
 	public String toString() {
 		String msg= "";
 		
 		
-		msg+= "Nombre:" + nombre;
-		msg += "\nPorcentaje: " + porcentaje;
-		msg += "\nTipo: " + tipo;
-		msg += "\nFabricacion: " + fabricacion;
+		msg+= "Nombre:" + name;
+		msg += "\nPorcentaje: " + percentage;
+		msg += "\nTipo: " + type;
+		msg += "\nFabricacion: " + making;
+		
+		return msg;
 	}
-	public String getNombre () { //metodo analizador da el codigo 
-		return this.nombre;
+	public String getName () { //metodo analizador da el codigo 
+		return this.name;
 	}
-	public double getPorcentaje () { //metodo analizador da el codigo 
-		return this.porcentaje;
+	public double getPercentage () { //metodo analizador da el codigo 
+		return this.percentage;
 	}
-	public TypeProduct getTipo () { //metodo analizador da el codigo 
-		return this.tipo;
+	public TypeProduct getType () { //metodo analizador da el codigo 
+		return this.type;
 	}
-	public boolean getFabricacion () { //metodo analizador da el codigo 
-		return this.fabricacion;
+	public boolean getMaking () { //metodo analizador da el codigo 
+		return this.making;
 	}
 }

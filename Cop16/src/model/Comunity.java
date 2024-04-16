@@ -1,43 +1,59 @@
 package model;
 import model.TypeComunity;
+import model.Problems;
+import model.Product;
+import model.Representant;
 
 public class Comunity {
 	
-	private String nombre;
-	private TypeComunity tipo;
-	private Representant representante;
-	private int habitantes; //Pendiente hacer clase numeracion para ripo y para departamento
-	private String[] problemas = new String[4];
-	private Product[] producto = new Product[20];
+	private Place place;
+	private String name;
+	private TypeComunity type;
+	private Representant[] representant;
+	private int habitants; 
+	private Problems problems;
+	private Product[] products;
 	
 
 	
 	
 	//constructor
-	public Comunity (String nombre, TypeComunity tipo, Representant representante, int habitantes, String[] problemas ) {        
+	public Comunity (Place PlaceName, String name, TypeComunity type, int habitants, Problems problems) {        
 	                                                                 
 	
-		this.nombre = nombre; 
-		this.tipo = tipo;
-		this.representante = representante;
-		this.habitantes= habitantes;
-		this.problemas = problemas;
-		
-		
-		
+		this.name = name; 
+		this.type = type;
+		this.habitants= habitants;
+		this.problems = problems;
+		representant=new Representant[1];
+		products=new Product[20];
 		
 	}
+	public Representant[] getRepresentant() {
+        return representant;
+    }
+	public Product[] getProduct() {
+        return products;
+    }
 	
 	public String toString()   {      //son publicos para   que otros metodos puedan usarlos
 	
 		String msg= "";
 		
 		
-		msg+= "Nombre:" + nombre;
-		msg += "\nTipo: " + tipo;
-		msg += "\nRepresentante: " + representante;
-		msg += "\nHabitantes" + habitantes;
-		msg += "\nProblemas" + problemas;
+		msg+= "Nombre:" + name;
+		msg += "\nTipo: " + type;
+		msg += "\nRepresentante: " + Representant.getName()+"--"+Representant.getPhone();
+		msg += "\nHabitantes" + habitants;
+		msg += "\nProblemas" + problems;
+		String list = "";
+		for(int i=0;i<products.length;i++){
+			if (products[i]!=null){
+				list+="\n "(i+1)+". Nombre: "+products[i].getName()+"\n Porcentaje de productos naturales en fabricacion: "+products[i].getPercentage();
+				list+=list++"\n Tipo de producto: "+products[i].getType()+"\n Producto hecho a mano: "+products.getMaking();
+			}
+		}
+		msg += "\nProductos: " + list;
 		
 		
 		return msg; 
@@ -45,24 +61,75 @@ public class Comunity {
 	}
 	
 	
-	public String getNombre () { //metodo analizador da el codigo 
-		return this.nombre;
+	public String getName () { //metodo analizador da el codigo 
+		return this.name;
 	}
-	public TypeComunity getTipo () { //metodo analizador da el codigo 
-		return this.tipo;
+	public TypeComunity getType () { //metodo analizador da el codigo 
+		return this.type;
 	}
-	public Representant getRepresentante () { //metodo analizador da el codigo 
-		return this.representante;
-	}
-	public int getHabitantes () { //metodo analizador da el codigo 
-		return this.habitantes;
-	}
-	// public problemas getProblemas () { //metodo analizador da el codigo 
-		// return this.problemas;
-	// }
-	
-	
 
+	public int getHabitants () { //metodo analizador da el codigo 
+		return this.habitants;
+	}
+	public Problems getProblems () { //metodo analizador da el codigo 
+		return this.problems;
+	}
+	
+	
+	/**
+     * Descripcion: Añade un nuevo apartamento al arreglo apartamentos
+     * pre: El arreglo apartamentos debe estar inicializado
+     * pos: El arreglo apartamentos queda modificado con el nuevo apartamento
+     * agregado
+     * 
+     * @param nuevoApartamento Apartamento El apartamento que se va a añadir
+     * @return boolean True si se logra añadir el apartamento, False en caso
+     *         contrario
+     */
+    public boolean addRepresentant(Representant newRepresentant) {
+
+		for (int i = 0; i<representant.length; i++) {
+			
+			if (representant[i] == null ){
+				
+				representant[i] = newRepresentant;
+				
+				return true; 
+			}else{
+				return false;
+			}
+			
+		}
+			
+        return false;
+    }
+	/**
+     * Descripcion: Añade un nuevo apartamento al arreglo apartamentos
+     * pre: El arreglo apartamentos debe estar inicializado
+     * pos: El arreglo apartamentos queda modificado con el nuevo apartamento
+     * agregado
+     * 
+     * @param nuevoApartamento Apartamento El apartamento que se va a añadir
+     * @return boolean True si se logra añadir el apartamento, False en caso
+     *         contrario
+     */
+    public boolean addProduct(Product newProduct) {
+
+		for (int i = 0; i<products.length; i++) {
+			
+			if (products[i] == null ){
+				
+				products[i] = newProduct;
+				
+				return true; 
+			}else{
+				return false;
+			}
+			
+		}
+			
+        return false;
+    }
   
 	
 }

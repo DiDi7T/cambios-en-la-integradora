@@ -1,6 +1,6 @@
 package model;
 
-public enum TipoEspecie {
+public enum TypeSpecie {
     FAUNA,
     FLORA
 }
