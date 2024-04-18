@@ -109,7 +109,7 @@ public class Executable{
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					System.out.println(":( Servicio aun no disponible, esperelo en la ultima entrega");
+					registerComunityOnPlace();
 				break;
 				
 				case 2: 
@@ -238,6 +238,50 @@ public class Executable{
 		int amount = lector.nextInt();
 		
 		boolean result=controller.registerSpecieInPlace (PlaceName,name,type,photo,amount);  
+		if(result==true){
+			System.out.println("Registro exitoso");
+		}else{
+			System.out.println("ha ocurrido un error");
+		}	
+		
+	}
+	public void registerComunityOnPlace (){ 
+		
+			lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" REGISTRAR COMUNIDAD "+"=======================\n");
+		
+		System.out.println("======================="+" LUGARES REGISTRADOS "+"=======================");
+		System.out.println(controller.listPlaces());
+		System.out.println("Por favor digita el nombre del lugar al cual deseas agregar la comunidad:");
+		String PlaceName = lector.nextLine();
+		
+		System.out.println("Digite el nombre de la comunidad: ");
+		String name = lector.nextLine();
+		
+		//lector.nextLine();
+	
+		System.out.println("Digite el tipo de comunidad:");
+		System.out.println(controller.listTypeComunity());
+		int type = lector.nextInt();
+		
+		
+		System.out.println("Digite el numero de habitantes");
+		int habitants = lector.nextInt();
+		
+		System.out.println("Digite el tipo de problema mas importante");
+		System.out.println(controller.listProblemsComunity());
+		int problems = lector.nextInt();
+		
+		lector.nextLine();
+		
+		System.out.println("Digite el nombre del representante de la comunidad ");
+		String nameR = lector.nextLine();
+		
+		System.out.println("Digite el numero de telefono del representante");
+		String phone = lector.nextLine();
+		
+		boolean result=controller.registerComunityInPlace(PlaceName,name,type,habitants,problems,nameR,phone);  
 		if(result==true){
 			System.out.println("Registro exitoso");
 		}else{

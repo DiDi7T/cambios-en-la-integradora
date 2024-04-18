@@ -9,7 +9,7 @@ public class Product{
 	private boolean making;
 	
 	
-	public Product(Comunity comunity,String name, double percentagepercentage, TypeProduct type, boolean making){
+	public Product(Comunity comunity,String name, double percentage, TypeProduct type, boolean making){
 		this.name=name;
 		this.percentage=percentage;
 		this.type=type;

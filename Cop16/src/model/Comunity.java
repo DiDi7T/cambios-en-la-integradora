@@ -43,14 +43,19 @@ public class Comunity {
 		
 		msg+= "Nombre:" + name;
 		msg += "\nTipo: " + type;
-		msg += "\nRepresentante: " + Representant.getName()+"--"+Representant.getPhone();
+		String person = "";
+		for(int i=0;i<representant.length;i++){
+			if (representant[i]!=null){
+				person+="\n "+representant[i].getName()+"--"+representant[i].getPhone();
+			}
+		}
+		msg += "\nRepresentante: " + person;
 		msg += "\nHabitantes" + habitants;
 		msg += "\nProblemas" + problems;
 		String list = "";
 		for(int i=0;i<products.length;i++){
 			if (products[i]!=null){
-				list+="\n "(i+1)+". Nombre: "+products[i].getName()+"\n Porcentaje de productos naturales en fabricacion: "+products[i].getPercentage();
-				list+=list++"\n Tipo de producto: "+products[i].getType()+"\n Producto hecho a mano: "+products.getMaking();
+				list+="\n "+(i+1)+products[i].toString();
 			}
 		}
 		msg += "\nProductos: " + list;

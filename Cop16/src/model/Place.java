@@ -55,8 +55,14 @@ public class Place {
 		msg += "\nTipo: " + type;
 		msg += "\nDate: " + new SimpleDateFormat("dd-MM-yyyy").format(date.getTime());
 		msg += "\nFoto:" + photo;
+		String com = "";
+		for(int i=0;i<comunity.length;i++){
+			if (comunity[i]!=null){
+				com+="Nombre:"+comunity[i].getName()+" Tipo de comunidad:"+comunity[i].getRepresentant()+".";
+			}
+		}
 		
-		msg += "\nComunidad que la cuida: \n"+" Nombre de la comunidad: "comunity.getName()+"\n Tipo de comunidad: "+comunity.getType()+"\n Representante: "+comunity.getRepresentant()
+		msg += "\nComunidad que la cuida: \n"+com;
 		msg += "\nRecursos:" + resources;
 		
 		String list = "";
@@ -203,6 +209,7 @@ public class Place {
 				}
 				
 			}
+			return false;  
 		}
       
 }

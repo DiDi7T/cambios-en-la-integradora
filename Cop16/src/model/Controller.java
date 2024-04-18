@@ -16,7 +16,7 @@ public class Controller{
 		createTestCases();
 		
 	}
-	
+	//---------------------------------------------------LISTS---------------------------------------------------------
 	/** 
 		Description: This method allows you to list the places 
 		that are stored in the array, returning a list with the name and area of each place
@@ -86,7 +86,43 @@ public class Controller{
 		
 		return list;
 	}
+	/** 
+		Description: This method allows you to list the types of comunity
+		@return list of comunity types
+	*/
+	public String listTypeComunity(){
 	
+		TypeComunity[] typeComunityArray = TypeComunity.values();
+	
+		String list = "";
+	
+		for (int i = 0; i < typeComunityArray.length; i++){
+			
+			list += "\n" + (i+1) + "-" + typeComunityArray[i];
+		}
+		
+		return list;
+	}
+	/** 
+		Description: This method allows you to list the types of problems
+		@return list of problems types
+	*/
+	public String listProblemsComunity(){
+	
+		Problems[] typeProblemsArray = Problems.values();
+	
+		String list = "";
+	
+		for (int i = 0; i < typeProblemsArray.length; i++){
+			
+			list += "\n" + (i+1) + "-" + typeProblemsArray[i];
+		}
+		
+		return list;
+	}
+	
+	
+	//--------------------------------------------STORAGES------------------------------------------------------------
 	/**
 		Description: This method allows you to store a place in the system
 		pre: the storage array is initialized
@@ -159,7 +195,113 @@ public class Controller{
 		
 	}
 	
+	
+	/**
+	* Descripcion: Permite crear y añadir un Apartamento a un Edificio en el
+	* sistema
+	* @param PlaceName name of place 
+	* @param name is name of specie
+	* @param type is the type specie 
+	* @param photo is the url photo of specie
+	* @param amount of specie
+	* @return boolean True si se logra añadir el Apartamento al Edificio, False en
+	*         caso contrario
+	*/
+    public boolean registerSpecieInPlace(String PlaceName, String name, int type, String photo, int amount ) {
+		
+		TypeSpecie newType = TypeSpecie.FAUNA;
+			
+			switch(type){
+				
+				case 1:
+					newType = TypeSpecie.FAUNA;
+				break;
+				
+				case 2:
+					newType = TypeSpecie.FLORA;
+				break;
+				
+			}
+					
+			Place temporal=searchPlace(PlaceName);
+			if(temporal!=null){
+				Specie newSpecie = new  Specie (temporal,name,newType,photo,amount);
+				
+				return temporal.addSpecie(newSpecie);
+				
+			}
 
+        return false;
+    }
+	
+	/**
+	* Descripcion: Permite crear y añadir una comunidad a un lugar en el
+	* sistema
+	* @param 
+	* @param
+	* @param 
+	* @param 
+	* @param 
+	* @return boolean True si se logra añadir la comunidad al lugar, False en
+	*         caso contrario
+	*/
+    public boolean registerComunityInPlace(String PlaceName, String name, int type, int habitants, int problems, String nameR, String phone ) {
+		
+		TypeComunity newTypeComunity = TypeComunity.AFROCOLOMBIANA;
+			
+			switch(type){
+				
+				case 1:
+					newTypeComunity = TypeComunity.AFROCOLOMBIANA;
+				break;
+				
+				case 2:
+					newTypeComunity = TypeComunity.INDIGENA;
+				break;
+				
+				case 3:
+					newTypeComunity = TypeComunity.RAIZAL;
+				break;
+				
+			}
+		Problems newTypeProblem = Problems.FALTA_DE_HOSPITAL;
+		
+			switch(problems){
+				
+				case 1:
+					newTypeProblem = Problems.FALTA_DE_HOSPITAL;
+				break;
+				
+				case 2:
+					newTypeProblem = Problems.FALTA_DE_ESCUELA;
+				break;
+				
+				case 3:
+					newTypeProblem = Problems.FALTA_DE_AGUA_POTABLE;
+				break;
+				
+				case 4:
+					newTypeProblem = Problems.FALTA_DE_ACCESO_A_UNA_ALIMENTACION_BASICA;
+				break;
+				
+			}
+					
+			Place temporal=searchPlace(PlaceName);
+			
+			if(temporal!=null){
+				Comunity newComunity = new  Comunity (temporal,name,newTypeComunity,habitants,newTypeProblem);
+				return temporal.addComunity(newComunity);
+			}
+			Comunity temp=temporal.searchComunity(name);
+			if(temp!=null){
+				Representant newRepresentant = new  Representant (temp,nameR,phone);
+				return temp.addRepresentant(newRepresentant);
+			}
+
+        return false;
+    }
+	
+	//-------------------------------------------------OTHER-----------------------------------------------------
 	
 		/**
 		Description: This method allows you to search for a place through its name, comparing the entered string with the name
@@ -216,44 +358,12 @@ public class Controller{
 			
 		}
 		
-	/**
-	* Descripcion: Permite crear y añadir un Apartamento a un Edificio en el
-	* sistema
-	* 
-	* @return boolean True si se logra añadir el Apartamento al Edificio, False en
-	*         caso contrario
-	*/
-    public boolean registerSpecieInPlace(String PlaceName, String name, int type, String photo, int amount ) {
-		
-		TypeSpecie newType = TypeSpecie.FAUNA;
-			
-			switch(type){
-				
-				case 1:
-					newType = TypeSpecie.FAUNA;
-				break;
-				
-				case 2:
-					newType = TypeSpecie.FLORA;
-				break;
-				
-			}
-					
-			Place temporal=searchPlace(PlaceName);
-			if(temporal!=null){
-				Specie newSpecie = new  Specie (temporal,name,newType,photo,amount);
-				
-				return temporal.addSpecie(newSpecie);
-				
-			}
-
-        return false;
-    }
+	
 		
 		public void createTestCases(){
 			storagePlace("Las hermosas", 2, 34, 2, "foto", 4323453);
 			registerSpecieInPlace("Las hermosas","mariposa", 1,"mariposa.com",34);
-			
+			registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
 		}
 		
 		
