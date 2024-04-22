@@ -6,10 +6,10 @@ public class Product{
 	private String name;
 	private double percentage;
 	private TypeProduct type;
-	private boolean making;
+	private String making;
 	
 	
-	public Product(Comunity comunity,String name, double percentage, TypeProduct type, boolean making){
+	public Product(Comunity comunity,String name, double percentage, TypeProduct type, String making){
 		this.name=name;
 		this.percentage=percentage;
 		this.type=type;
@@ -36,7 +36,7 @@ public class Product{
 	public TypeProduct getType () { //metodo analizador da el codigo 
 		return this.type;
 	}
-	public boolean getMaking () { //metodo analizador da el codigo 
+	public String getMaking () { //metodo analizador da el codigo 
 		return this.making;
 	}
 }

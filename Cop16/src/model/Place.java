@@ -14,7 +14,7 @@ public class Place {
 	private TypePlace type; //Pendiente hacer clase numeracion para ripo y para departamento
 	private Calendar date;//queda pendiente definir como tomar la fecha usando calendar
 	private String photo; 
-	private Comunity[] comunity;
+	private Comunity comunity;
 	private double resources;
 	
 	private Specie[] species;
@@ -33,7 +33,7 @@ public class Place {
 		this.resources = resources;
 		this.department = department;
 		species = new Specie[50];
-		comunity = new Comunity[1];
+		comunity = null;
 		
 		
 	}
@@ -41,7 +41,7 @@ public class Place {
 	public Specie[] getSpecies() {
         return species;
     }
-	public Comunity[] getComunity() {
+	public Comunity getComunity() {
         return comunity;
     }
 	
@@ -56,12 +56,13 @@ public class Place {
 		msg += "\nTipo: " + type;
 		msg += "\nDate: " + new SimpleDateFormat("dd-MM-yyyy").format(date.getTime());
 		msg += "\nFoto:" + photo;
-		String com = "";
-		for(int i=0;i<comunity.length;i++){
-			if (comunity[i]!=null){
-				com+="Nombre:"+comunity[i].getName()+" Tipo de comunidad:"+comunity[i].getType()+"."+"representante:"+comunity[i].listRepresent();
-			}
+		String com="";
+		if (comunity==null){
+			com="No se encuentra registrada una comunidad";
+		}else{
+			com = "Nombre:"+comunity.getName()+" Tipo de comunidad:"+comunity.getType()+"."+"representante:"+comunity.listRepresent();
 		}
+		
 		
 		msg += "\nComunidad que la cuida: \n"+com;
 		msg += "\nRecursos:" + resources;
@@ -227,20 +228,20 @@ public class Place {
 		
 		public Comunity searchComunity (String name) {
 			
-			for ( int i = 0; i<comunity.length; i++) { 
+		
 			
-				Comunity temporal = comunity[i]; 
+			Comunity temporal = comunity; 
+			
+			if(temporal!=null){
 				
-				if(temporal!=null){
-					
-					if (name.equalsIgnoreCase(temporal.getName())) {    
-				
-						return temporal; 
-				
-					}
+				if (name.equalsIgnoreCase(temporal.getName())) {    
+			
+					return temporal; 
+			
 				}
-				
 			}
+				
+			
 			
 			return null;  
 		}
@@ -257,16 +258,16 @@ public class Place {
 		 */
 		public boolean addComunity(Comunity newComunity) {
 
-			for (int i = 0; i<comunity.length; i++) {
+			
 				
-				if (comunity[i] == null ){
+				if (comunity == null ){
 					
-					comunity[i] = newComunity;
+					comunity = newComunity;
 					
 					return true; 
 				}
 				
-			}
+			
 			return false;  
 		}
       

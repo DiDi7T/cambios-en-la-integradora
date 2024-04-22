@@ -156,7 +156,7 @@ public class Controller{
 			break;
 			
 			case 4:
-				newDepartment = Department.NARIÑO;
+				newDepartment = Department.NARINO;
 			break;
 		}
 		switch(type){
@@ -351,6 +351,7 @@ public class Controller{
     public boolean addProuct(String comunityName, String name, double percentage, int type, int making ) {
 		
 		TypeProduct newType = TypeProduct.ALIMENTO;
+		String make ="";
 			
 			switch(type){
 				
@@ -363,10 +364,22 @@ public class Controller{
 				break;
 				
 			}
-					
+			
+			switch(making){
+				
+				case 1:
+					make = "Si";
+				break;
+				
+				case 2:
+					make = "No";
+				break;
+				
+			}
+			
 			Comunity temporal=searchComunity(comunityName);
 			if(temporal!=null){
-				Product newProduct = new  Product (temporal,name,percentage,newType,making);
+				Product newProduct = new  Product (temporal,name,percentage,newType,make);
 				
 				return temporal.addProduct(newProduct);
 				
