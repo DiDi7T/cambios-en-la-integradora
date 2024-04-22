@@ -337,6 +337,44 @@ public class Controller{
         return false;
     }
 	
+	/**
+	* Descripcion: Permite crear y añadir un Apartamento a un Edificio en el
+	* sistema
+	* @param PlaceName name of place 
+	* @param name is name of specie
+	* @param type is the type specie 
+	* @param photo is the url photo of specie
+	* @param amount of specie
+	* @return boolean True si se logra añadir el Apartamento al Edificio, False en
+	*         caso contrario
+	*/
+    public boolean addProuct(String comunityName, String name, double percentage, int type, int making ) {
+		
+		TypeProduct newType = TypeProduct.ALIMENTO;
+			
+			switch(type){
+				
+				case 1:
+					newType = TypeProduct.ALIMENTO;
+				break;
+				
+				case 2:
+					newType = TypeProduct.ARTESANIA;
+				break;
+				
+			}
+					
+			Comunity temporal=searchComunity(comunityName);
+			if(temporal!=null){
+				Product newProduct = new  Product (temporal,name,percentage,newType,making);
+				
+				return temporal.addProduct(newProduct);
+				
+			}
+
+        return false;
+    }
+	
 	//-------------------------------------------------OTHER-----------------------------------------------------
 	
 		/**
@@ -393,7 +431,31 @@ public class Controller{
 			
 			
 		}
+		/**
+		Description: This method allows you to search for a place through its name, comparing the entered string with the name
+		from the place stored in the array
+		pre: the storage array is initialized
+		@param name String The name of the place to search
+		@return place The searched place
+		*/
 		
+		public Comunity searchComunity (String name) {
+			
+			for ( int i = 0; i<storage.length; i++) { 
+			
+				//Place temporal = storage[i]; 
+				
+				if(storage[i].getComunity().getName().equalsIgnoreCase(name)){
+					
+					return storage[i].getComunity(); 
+				
+					
+				}
+				
+			}
+			
+			return null;  
+		}
 	
 		
 		public void createTestCases(){

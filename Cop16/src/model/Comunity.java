@@ -62,17 +62,17 @@ public class Comunity {
 	}
 	
 	
-	public String getName () { //metodo analizador da el codigo 
+	public String getName() { //metodo analizador da el codigo 
 		return this.name;
 	}
-	public TypeComunity getType () { //metodo analizador da el codigo 
+	public TypeComunity getType() { //metodo analizador da el codigo 
 		return this.type;
 	}
 
-	public int getHabitants () { //metodo analizador da el codigo 
+	public int getHabitants() { //metodo analizador da el codigo 
 		return this.habitants;
 	}
-	public Problems getProblems () { //metodo analizador da el codigo 
+	public Problems getProblems() { //metodo analizador da el codigo 
 		return this.problems;
 	}
 	

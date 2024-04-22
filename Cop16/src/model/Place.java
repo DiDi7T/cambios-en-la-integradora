@@ -152,7 +152,7 @@ public class Place {
      * @return boolean True si se logra añadir el apartamento, False en caso
      *         contrario
      */
-    public boolean updateSpecie(Place temp, String name, int type, String photo, int amount) {
+    public boolean updateSpecie(Place temp, String name, TypeSpecie type, String photo, int amount) {
 		for (int i = 0; i<species.length; i++) {
 			if (species[i] != null && species[i].getName().equalsIgnoreCase(name)){
 				species[i] = new Specie(temp, name, type, photo, amount);

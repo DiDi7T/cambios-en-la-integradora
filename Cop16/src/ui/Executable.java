@@ -125,7 +125,7 @@ public class Executable{
 				break;
 				
 				case 5: 
-					System.out.println(":( Servicio aun no disponible, esperelo en la ultima entrega");
+					updateSpecieOnPlace();
 				break;
 				
 				case 6: 
@@ -253,33 +253,33 @@ public class Executable{
 		
 		System.out.println("======================="+" LUGARES REGISTRADOS "+"=======================");
 		System.out.println(controller.listPlaces());
-		System.out.println("Por favor digita el nombre del lugar al cual deseas actualizar una especie:");
+		System.out.println("Por favor digita el nombre del lugar al cual deseas modificar la especie:");
 		String PlaceName = lector.nextLine();
 		
-		System.out.println("Digite el nombre de la especie que desea modificar: ");
+		System.out.println("Digite el nombre de la especie que deseas actualizar: ");
 		String name = lector.nextLine();
 		
 		lector.nextLine();
 	
-		// System.out.println("Digite el tipo de especie:");
-		// System.out.println(controller.listTypeSpecie());
-		// int type = lector.nextInt();
-		// lector.nextLine();
+		System.out.println("Digite el tipo de especie:");
+		System.out.println(controller.listTypeSpecie());
+		int type = lector.nextInt();
+		lector.nextLine();
 		
-		// System.out.println("Digite la ruta de la imagen de la especie: ");
-		// String photo = lector.nextLine();
+		System.out.println("Digite la ruta de la imagen de la especie: ");
+		String photo = lector.nextLine();
 		
-		// lector.nextLine();
+		lector.nextLine();
 		
 		System.out.println("Cuantas especies de este tipo se encuentran en el lugar?");
 		int amount = lector.nextInt();
 		
-		//boolean result=controller.updateSpecieInPlace (PlaceName,name,amount);  
-		// if(result==true){
-			// System.out.println("Registro exitoso");
-		// }else{
-			// System.out.println("ha ocurrido un error");
-		// }	
+		boolean result=controller.updateSpecieInPlace(PlaceName,name,type,photo,amount);  
+		if(result==true){
+			System.out.println("Registro exitoso");
+		}else{
+			System.out.println("ha ocurrido un error");
+		}	
 		
 	}
 	public void registerComunityOnPlace (){ 
