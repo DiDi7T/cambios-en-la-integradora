@@ -1,12 +1,12 @@
 package model;
 
 public class Representant{
-	private Comunity comunity;
+	//private Comunity comunity;
 	private String name;
 	private String phone;
 	
 	
-	public Representant(Comunity comunity,String name,String phone){
+	public Representant(String name,String phone){
 		this.name = name; 
 		this.phone = phone;
 	}

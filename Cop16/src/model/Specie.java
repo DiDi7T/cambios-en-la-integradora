@@ -40,4 +40,18 @@ public class Specie {
 	public int getAmount() {
         return amount;
     }
+	
+	public void setPhoto(String photo){
+		this.photo = photo;
+		
+	}
+	public void setAmount(int amount){
+		this.amount = amount;
+		
+	}
+	public void setType(TypeSpecie type){
+		this.type = type;
+		
+	}
+	
 }

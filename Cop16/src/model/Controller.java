@@ -288,14 +288,50 @@ public class Controller{
 					
 			Place temporal=searchPlace(PlaceName);
 			
+			
 			if(temporal!=null){
-				Comunity newComunity = new  Comunity (temporal,name,newTypeComunity,habitants,newTypeProblem);
+				Comunity newComunity = new  Comunity (temporal,name,newTypeComunity,habitants,newTypeProblem,nameR,phone);
+				
 				return temporal.addComunity(newComunity);
 			}
-			Comunity temp=temporal.searchComunity(name);
-			if(temp!=null){
-				Representant newRepresentant = new  Representant (temp,nameR,phone);
-				return temp.addRepresentant(newRepresentant);
+			
+		
+
+        return false;
+    }
+	/**
+	* Descripcion: Permite crear y añadir un Apartamento a un Edificio en el
+	* sistema
+	* @param PlaceName name of place 
+	* @param name is name of specie
+	* @param type is the type specie 
+	* @param photo is the url photo of specie
+	* @param amount of specie
+	* @return boolean True si se logra añadir el Apartamento al Edificio, False en
+	*         caso contrario
+	*/
+    public boolean updateSpecieInPlace(String PlaceName, String name, int type, String photo, int amount ) {
+		
+		TypeSpecie newType = TypeSpecie.FAUNA;
+			
+			switch(type){
+				
+				case 1:
+					newType = TypeSpecie.FAUNA;
+				break;
+				
+				case 2:
+					newType = TypeSpecie.FLORA;
+				break;
+				
+			}
+					
+			Place temporal=searchPlace(PlaceName);
+			if(temporal!=null){
+				//Specie newSpecie = new  Specie (temporal,name,newType,photo,amount);
+				
+				return temporal.updateSpecie(temporal,name,newType,photo,amount);
+				
 			}
 
         return false;
@@ -363,7 +399,7 @@ public class Controller{
 		public void createTestCases(){
 			storagePlace("Las hermosas", 2, 34, 2, "foto", 4323453);
 			registerSpecieInPlace("Las hermosas","mariposa", 1,"mariposa.com",34);
-			registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
+			//registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
 		}
 		
 		

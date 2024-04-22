@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import model.Specie;
 import model.Comunity;
+import model.Representant;
 
 
 public class Place {
@@ -58,7 +59,7 @@ public class Place {
 		String com = "";
 		for(int i=0;i<comunity.length;i++){
 			if (comunity[i]!=null){
-				com+="Nombre:"+comunity[i].getName()+" Tipo de comunidad:"+comunity[i].getRepresentant()+".";
+				com+="Nombre:"+comunity[i].getName()+" Tipo de comunidad:"+comunity[i].getType()+"."+"representante:"+comunity[i].listRepresent();
 			}
 		}
 		
@@ -142,6 +143,29 @@ public class Place {
         return false;
     }
 	 /**
+     * Descripcion: Añade un nuevo apartamento al arreglo apartamentos
+     * pre: El arreglo apartamentos debe estar inicializado
+     * pos: El arreglo apartamentos queda modificado con el nuevo apartamento
+     * agregado
+     * 
+     * @param nuevoApartamento Apartamento El apartamento que se va a añadir
+     * @return boolean True si se logra añadir el apartamento, False en caso
+     *         contrario
+     */
+    public boolean updateSpecie(Place temp, String name, int type, String photo, int amount) {
+		for (int i = 0; i<species.length; i++) {
+			if (species[i] != null && species[i].getName().equalsIgnoreCase(name)){
+				species[i] = new Specie(temp, name, type, photo, amount);
+				return true; 
+			}
+			
+		}
+		//Specie temporal = searchSpecie(name);
+		return false;			
+    }
+	
+
+	 /**
      * Descripcion: Calcula el numero de apartamentos disponibles en el Edificio
      * pre: El arreglo apartamentos debe estar inicializado
      * 
@@ -158,6 +182,40 @@ public class Place {
 		return amount;
 
     }
+	
+		/**
+		Description: This method allows you to search for a place through its name, comparing the entered string with the name
+		from the place stored in the array
+		pre: the storage array is initialized
+		@param name String The name of the place to search
+		@return place The searched place
+		*/
+		
+		public Specie searchSpecie (String name) {
+			
+			for ( int i = 0; i<species.length; i++) { 
+			
+				Specie temporal = species[i]; 
+				
+				if(temporal!=null){
+					
+					if (name.equalsIgnoreCase(temporal.getName())) {    
+				
+						return temporal; 
+				
+					}
+				}
+				
+			}
+			
+			return null;  
+		}
+		
+		// public boolean modifiSpecie(String name, int amount){
+		
+			// return searchSpecie(name).setAmount(amount);
+				
+		// }
 	
 		/**
 		Description: This method allows you to search for a place through its name, comparing the entered string with the name
