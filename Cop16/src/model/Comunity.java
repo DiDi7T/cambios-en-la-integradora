@@ -54,7 +54,8 @@ public class Comunity {
 				list+="\n "+(i+1)+products[i].toString();
 			}
 		}
-		msg += "\nProductos: " + list;
+		msg += "\nProductos: " +"\n"+ list;
+		
 		
 		
 		return msg; 
@@ -114,9 +115,8 @@ public class Comunity {
 				products[i] = newProduct;
 				
 				return true; 
-			}else{
-				return false;
 			}
+			
 			
 		}
 			

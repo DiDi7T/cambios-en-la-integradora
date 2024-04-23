@@ -65,7 +65,7 @@ public class Executable{
 				break;
 				
 				case 3: 
-					System.out.println(":( Servicio aun no disponible, esperelo en la ultima entrega");
+					consultComunityForDepartment();
 				break;
 				
 				case 4: 
@@ -117,7 +117,7 @@ public class Executable{
 				break;
 				
 				case 3: 
-					System.out.println(":( Servicio aun no disponible, esperelo en la ultima entrega");
+					registerProductInComunity();
 				break;
 				
 				case 4: 
@@ -153,7 +153,7 @@ public class Executable{
 		System.out.println("   ======================="+" REGISTRAR LUGAR "+"=======================\n");
 		System.out.println("Digite el nombre del lugar");
 		String name = lector.nextLine();
-		lector.nextLine();
+		
 		
 		System.out.println("Digite el departamento");
 		System.out.println(controller.listDeparment());
@@ -162,7 +162,7 @@ public class Executable{
 	
 		System.out.println("Digite el area del lugar(escribelo en kilometros cuadrados)");
 		double area = lector.nextDouble();
-		lector.nextLine();
+
 		
 		System.out.println("Digite el tipo");
 		System.out.println(controller.listTypePlace());
@@ -172,7 +172,7 @@ public class Executable{
 		System.out.println("Digite la ruta del lugar ");
 		String photo = lector.nextLine();
 		
-		lector.nextLine();
+	
 		
 		System.out.println("Digite los recursos economicos necesarios para su sostenimiento(expreselo en dolares)");
 		double resources = lector.nextDouble();
@@ -222,7 +222,7 @@ public class Executable{
 		System.out.println("Digite el nombre de la especie: ");
 		String name = lector.nextLine();
 		
-		lector.nextLine();
+
 	
 		System.out.println("Digite el tipo de especie:");
 		System.out.println(controller.listTypeSpecie());
@@ -232,7 +232,7 @@ public class Executable{
 		System.out.println("Digite la ruta de la imagen de la especie: ");
 		String photo = lector.nextLine();
 		
-		lector.nextLine();
+
 		
 		System.out.println("Cuantas especies de este tipo se encuentran en el lugar?");
 		int amount = lector.nextInt();
@@ -259,7 +259,6 @@ public class Executable{
 		System.out.println("Digite el nombre de la especie que deseas actualizar: ");
 		String name = lector.nextLine();
 		
-		lector.nextLine();
 	
 		System.out.println("Digite el tipo de especie:");
 		System.out.println(controller.listTypeSpecie());
@@ -269,7 +268,7 @@ public class Executable{
 		System.out.println("Digite la ruta de la imagen de la especie: ");
 		String photo = lector.nextLine();
 		
-		lector.nextLine();
+	
 		
 		System.out.println("Cuantas especies de este tipo se encuentran en el lugar?");
 		int amount = lector.nextInt();
@@ -340,33 +339,26 @@ public class Executable{
 		// String PlaceName = lector.nextLine();
 		
 		System.out.println("Digite el nombre de la comunidad: ");
-		String name = lector.nextLine();
+		String nameComunity = lector.nextLine();
 		
-		System.out.println("Digite el porcentage de materiales organicos  ");
+		System.out.println("Digite el nombre del producto ");
+		String name = lector.nextLine();
+
+		System.out.println("Porcentaje de productos naturales empleados en su fabricación: ");
 		double percentage = lector.nextDouble();
 		//lector.nextLine();
 	
-		System.out.println("Digite el tipo de comunidad:");
-		System.out.println(controller.listTypeComunity());
+		System.out.println("Digite el tipo de producto:");
+		System.out.println(controller.listTypeProduct());
 		int type = lector.nextInt();
+
+		System.out.println("El producto fue hecho a mano? \n1)Si\n2)No");
+		int make = lector.nextInt();
 		
 		
-		System.out.println("Digite el numero de habitantes");
-		int habitants = lector.nextInt();
-		
-		System.out.println("Digite el tipo de problema mas importante");
-		System.out.println(controller.listProblemsComunity());
-		int problems = lector.nextInt();
-		
-		lector.nextLine();
-		
-		System.out.println("Digite el nombre del representante de la comunidad ");
-		String nameR = lector.nextLine();
-		
-		System.out.println("Digite el numero de telefono del representante");
-		String phone = lector.nextLine();
-		
-		boolean result=controller.registerComunityInPlace(PlaceName,name,type,habitants,problems,nameR,phone);  
+		boolean result=controller.addProduct(nameComunity,name,percentage,type,make);  
+		//String result=controller.addProducto(nameComunity,name,percentage,type,make);  
+		//System.out.println(result);
 		if(result==true){
 			System.out.println("Registro exitoso");
 		}else{
@@ -374,4 +366,16 @@ public class Executable{
 		}	
 		
 	}
+	public void consultComunityForDepartment(){ 
+		
+		lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" CONSULTAR COMUNIDAD POR DEPARTAMENTO "+"=======================\n");
+		
+		
+	
+		
+	}
+	
+	
 }

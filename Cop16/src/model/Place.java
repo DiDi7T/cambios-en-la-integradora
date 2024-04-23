@@ -60,12 +60,13 @@ public class Place {
 		if (comunity==null){
 			com="No se encuentra registrada una comunidad";
 		}else{
-			com = "Nombre:"+comunity.getName()+" Tipo de comunidad:"+comunity.getType()+"."+"representante:"+comunity.listRepresent();
+			com = comunity.toString();
 		}
 		
 		
 		msg += "\nComunidad que la cuida: \n"+com;
 		msg += "\nRecursos:" + resources;
+		
 		
 		String list = "";
 		for(int i=0;i<species.length;i++){

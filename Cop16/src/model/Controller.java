@@ -120,6 +120,23 @@ public class Controller{
 		
 		return list;
 	}
+	/** 
+		Description: This method allows you to list the types of problems
+		@return list of problems types
+	*/
+	public String listTypeProduct(){
+	
+		TypeProduct[] typeProductsArray = TypeProduct.values();
+	
+		String list = "";
+	
+		for (int i = 0; i < typeProductsArray.length; i++){
+			
+			list += "\n" + (i+1) + "-" + typeProductsArray[i];
+		}
+		
+		return list;
+	}
 	
 	
 	//--------------------------------------------STORAGES------------------------------------------------------------
@@ -348,7 +365,7 @@ public class Controller{
 	* @return boolean True si se logra añadir el Apartamento al Edificio, False en
 	*         caso contrario
 	*/
-    public boolean addProuct(String comunityName, String name, double percentage, int type, int making ) {
+    public boolean addProduct(String comunityName, String name, double percentage, int type, int making ) {
 		
 		TypeProduct newType = TypeProduct.ALIMENTO;
 		String make ="";
@@ -379,13 +396,59 @@ public class Controller{
 			
 			Comunity temporal=searchComunity(comunityName);
 			if(temporal!=null){
-				Product newProduct = new  Product (temporal,name,percentage,newType,make);
+				Product newProduct = new Product(temporal,name,percentage,newType,make);
 				
 				return temporal.addProduct(newProduct);
 				
 			}
 
         return false;
+    }
+	public String addProducto(String nameComunity,String nameProduct, double percentage, int type, int made) {
+        TypeProduct newType = TypeProduct.ALIMENTO;
+		String make ="";
+			
+			switch(type){
+				
+				case 1:
+					newType = TypeProduct.ALIMENTO;
+				break;
+				
+				case 2:
+					newType = TypeProduct.ARTESANIA;
+				break;
+				
+			}
+			
+			switch(made){
+				
+				case 1:
+					make = "Si";
+				break;
+				
+				case 2:
+					make = "No";
+				break;
+				
+			}
+		
+		
+		String message = "good";
+        Comunity comun = searchComunity(nameComunity);
+        if (comun != null) {
+            for (int i = 0; i < comun.getProduct().length; i++) {
+                if (comun.getProduct()[i] == null) {
+                    comun.getProduct()[i] = new Product(comun,nameProduct,percentage, newType, make);
+                    break;
+                } else {
+                    message = "The community's product array is full";
+                }
+            }
+        } else {
+            message = "Community not found";
+        }
+
+        return message;
     }
 	
 	//-------------------------------------------------OTHER-----------------------------------------------------
@@ -469,12 +532,13 @@ public class Controller{
 			
 			return null;  
 		}
-	
+		
+		
 		
 		public void createTestCases(){
 			storagePlace("Las hermosas", 2, 34, 2, "foto", 4323453);
 			registerSpecieInPlace("Las hermosas","mariposa", 1,"mariposa.com",34);
-			//registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
+			registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
 		}
 		
 		
