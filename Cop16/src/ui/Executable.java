@@ -44,7 +44,7 @@ public class Executable{
 			System.out.println("   ======================="+" BIENVENIDO AL COP16 "+"=======================");
 			System.out.println("-------------------------------------------------------------------------");
 			System.out.println("| 1) Panel Administrativo \n|");
-			System.out.println("| 2) Consultar la información de un lugar (parcialmente implementada) \n|");
+			System.out.println("| 2) Consultar la información de un lugar \n|");
 			System.out.println("| 3) Consultar la información de las comunidades de un departamento \n|");
 			System.out.println("| 4) Consultar la información de las comunidades cuyos problemas son: \n|    Falta de un hospital o falta de una escuela. \n|");
 			System.out.println("| 5) Consultar el nombre del lugar con mayor cantidad de especies.\n|");
@@ -69,7 +69,7 @@ public class Executable{
 				break;
 				
 				case 4: 
-					System.out.println(":( Servicio aun no disponible, esperelo en la ultima entrega");
+					consultComunityProblems();
 				break;
 				
 				case 5: 
@@ -101,7 +101,7 @@ public class Executable{
 			System.out.println("   ======================="+" BIENVENIDO ADMIN "+"=======================");
 			System.out.println("-------------------------------------------------------------------------");
 			System.out.println(" 1) Ingresar una Comunidad.\n");
-			System.out.println(" 2) Ingresar un Lugar(implementado) \n");
+			System.out.println(" 2) Ingresar un Lugar \n");
 			System.out.println(" 3) Ingresar y/o eliminar un producto a una comunidad. \n");
 			System.out.println(" 4) Ingresar una especie a un lugar. \n");
 			System.out.println(" 5) Modificar los datos de la especie en un lugar. \n");
@@ -117,7 +117,22 @@ public class Executable{
 				break;
 				
 				case 3: 
-					registerProductInComunity();
+					
+					System.out.println("-------------------------------------------------");
+					System.out.println("¿Que deseas realizar?\n1)Ingresar un producto a una comunidad\n2)Eliminar un producto de una comunidad");
+					int opcion = lector.nextInt();
+					switch(opcion){
+						case 1: 
+							registerProductInComunity();
+						break;
+						case 2:
+							deleteProductInComunity();
+						break;
+						default:
+							System.out.println("Porfavor digita una opcion valida");
+						break;
+					}
+					
 				break;
 				
 				case 4: 
@@ -333,10 +348,6 @@ public class Executable{
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("   ======================="+" REGISTRAR PRODUCTO DE UNA COMUNIDAD "+"=======================\n");
 		
-		// System.out.println("======================="+" LUGARES REGISTRADOS "+"=======================");
-		// System.out.println(controller.listPlaces());
-		// System.out.println("Por favor digita el nombre del lugar al cual deseas agregar un producto a su comunidad:");
-		// String PlaceName = lector.nextLine();
 		
 		System.out.println("Digite el nombre de la comunidad: ");
 		String nameComunity = lector.nextLine();
@@ -366,14 +377,70 @@ public class Executable{
 		}	
 		
 	}
+	
+	public void deleteProductInComunity (){ 
+		
+			lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" ELIMINAR PRODUCTO DE UNA COMUNIDAD "+"=======================\n");
+		
+		
+		System.out.println("Digite el nombre de la comunidad: ");
+		String nameComunity = lector.nextLine();
+		
+		System.out.println("Digite el nombre del producto ");
+		String name = lector.nextLine();
+
+		
+		boolean result=controller.deleteProduct(nameComunity,name);  
+		if(result==true){
+			System.out.println("Se ha eliminado correctamente");
+		}else{
+			System.out.println("ha ocurrido un error en la eliminacion");
+		}	
+		
+	}
 	public void consultComunityForDepartment(){ 
 		
 		lector.nextLine(); //correción del bug del Scanner
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("   ======================="+" CONSULTAR COMUNIDAD POR DEPARTAMENTO "+"=======================\n");
+		System.out.println("Digite el departamento a consultar");
+		System.out.println(controller.listDeparment());
+		int deparm = lector.nextInt();
 		
+		
+		String result=controller.consultDepartment(deparm);  
+		System.out.println(result);
 		
 	
+		
+	}
+	public void consultComunityProblems(){ 
+		
+		lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" CONSULTAR COMUNIDADES POR PROBLEMA "+"=======================\n");
+		System.out.println("Digite el problema a consultar");
+		System.out.println(controller.listProblemsComunity());
+		int problem = lector.nextInt();
+		
+		
+		String result=controller.consultProblem(problem);  
+		System.out.println(result);
+	}
+	public void consultPlaceWithManySpecies(){ 
+		
+		lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" CONSULTAR LUGARES CON MAYOR CANTIDAD DE ESPECIES"+"=======================\n");
+		
+	}
+	public void consultPlaceBiggest(){ 
+		
+		lector.nextLine(); //correción del bug del Scanner
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("   ======================="+" CONSULTAR LUGARES MAS GRANDES POR KILOMETRO CUADRADO"+"=======================\n");
 		
 	}
 	

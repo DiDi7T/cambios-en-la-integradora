@@ -56,6 +56,15 @@ public class Place {
 		msg += "\nTipo: " + type;
 		msg += "\nDate: " + new SimpleDateFormat("dd-MM-yyyy").format(date.getTime());
 		msg += "\nFoto:" + photo;
+		msg += "\nRecursos economicos requeridos para su mantenimiento:" + resources;
+		
+		String list = "";
+		for(int i=0;i<species.length;i++){
+			if (species[i]!=null){
+				list+=(i+1)+". "+species[i].getName()+" "+species[i].getAmount()+"\n";
+			}
+		}
+		msg += "\nEspecies en el lugar: \n---------------------\n" + String.format("%3s %-5s %-7s","N°", "Nombre", "Cantidad de especies","\n")+"\n "+ list;
 		String com="";
 		if (comunity==null){
 			com="No se encuentra registrada una comunidad";
@@ -64,17 +73,7 @@ public class Place {
 		}
 		
 		
-		msg += "\nComunidad que la cuida: \n"+com;
-		msg += "\nRecursos:" + resources;
-		
-		
-		String list = "";
-		for(int i=0;i<species.length;i++){
-			if (species[i]!=null){
-				list+=(i+1)+". "+species[i].getName()+" "+species[i].getAmount()+"\n";
-			}
-		}
-		msg += "\nEspecies: \n" + String.format("%3s %-5s %-5s","N°", "Nombre", "Cantidad de especies","\n")+"\n "+ list;
+		msg += "\n---COMUNIDAD QUE LA CUIDA:--- \n"+com;
 		
 		return msg; 
 		
@@ -99,7 +98,7 @@ public class Place {
 	public double getResources () { //metodo analizador da el codigo 
 		return this.resources;
 	}
-	public Department getDepartment () { //metodo analizador da el codigo 
+	public Department getDepartment(){ //metodo analizador da el codigo 
 		return this.department;
 	}
 	

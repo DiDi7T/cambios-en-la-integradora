@@ -41,20 +41,20 @@ public class Comunity {
 	
 		String msg= "";
 		
+		//msg+="------------------------------\n";
+		msg+= "Nombre de la comunidad:" + name;
+		msg += "\nTipo de comunidad: " + type;
 		
-		msg+= "Nombre:" + name;
-		msg += "\nTipo: " + type;
-		
-		msg += "\nRepresentante: " + representant;
-		msg += "\nHabitantes" + habitants;
-		msg += "\nProblemas" + problems;
+		msg += "\nRepresentante de la comunidad: \n" + representant;
+		msg += "\nHabitantes en la comunidad: " + habitants;
+		msg += "\nProblema mas importante de la comunidad:" + problems;
 		String list = "";
 		for(int i=0;i<products.length;i++){
 			if (products[i]!=null){
-				list+="\n "+(i+1)+products[i].toString();
+				list+="\n"+(i+1)+")."+products[i].toString()+"\n----------------";
 			}
 		}
-		msg += "\nProductos: " +"\n"+ list;
+		msg += "\nProductos que ofrece la comunidad: " +"\n"+"..................."+ list;
 		
 		
 		
@@ -122,6 +122,45 @@ public class Comunity {
 			
         return false;
     }
+	
+	public boolean deleteProduct(String name){
+		
+		int index = searchIndexProduct(name);
+		
+		if(index != -1){
+			
+			products[index] = null;
+			return true;
+			
+		}
+		
+		return false;
+		
+		
+		
+		
+	}
+	
+	public int searchIndexProduct(String name){
+		
+		for(int i = 0; i<products.length; i++){
+			
+			Product temporal = products[i];
+			
+			if(temporal!=null){
+				
+				if(name.equals(temporal.getName())){
+				
+				return i;
+				
+				}
+			}			
+			
+		}
+
+		return -1;	
+		
+	}
   
 	
 }

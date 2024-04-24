@@ -51,6 +51,7 @@ public class Controller{
 		return list;
 	}
 	
+	
 	/** 
 		Description: This method allows you to list the types of places
 		@return list of place types
@@ -404,52 +405,19 @@ public class Controller{
 
         return false;
     }
-	public String addProducto(String nameComunity,String nameProduct, double percentage, int type, int made) {
-        TypeProduct newType = TypeProduct.ALIMENTO;
-		String make ="";
-			
-			switch(type){
-				
-				case 1:
-					newType = TypeProduct.ALIMENTO;
-				break;
-				
-				case 2:
-					newType = TypeProduct.ARTESANIA;
-				break;
-				
-			}
-			
-			switch(made){
-				
-				case 1:
-					make = "Si";
-				break;
-				
-				case 2:
-					make = "No";
-				break;
-				
-			}
-		
-		
-		String message = "good";
-        Comunity comun = searchComunity(nameComunity);
-        if (comun != null) {
-            for (int i = 0; i < comun.getProduct().length; i++) {
-                if (comun.getProduct()[i] == null) {
-                    comun.getProduct()[i] = new Product(comun,nameProduct,percentage, newType, make);
-                    break;
-                } else {
-                    message = "The community's product array is full";
-                }
-            }
-        } else {
-            message = "Community not found";
-        }
+	
+	public boolean deleteProduct(String comunityName, String name  ) {
 
-        return message;
-    }
+		Comunity temporal=searchComunity(comunityName);
+		if(temporal!=null){
+			
+			return temporal.deleteProduct(name);
+			
+		}
+
+		return false;
+	}
+	
 	
 	//-------------------------------------------------OTHER-----------------------------------------------------
 	
@@ -533,12 +501,116 @@ public class Controller{
 			return null;  
 		}
 		
+		public Department typeDepartment (int department) {
+			
+			
+			Department newDepartment = Department.CHOCO;
+			TypePlace newTypePlace = TypePlace.AREA_PROTEGIDA;
+			
+			switch(department){
+				
+				case 1:
+					newDepartment = Department.CHOCO;
+				break;
+				
+				case 2:
+					newDepartment = Department.VALLE;
+				break;
+				
+				case 3:
+					newDepartment = Department.CAUCA;
+				break;
+				
+				case 4:
+					newDepartment = Department.NARINO;
+				break;
+			}
+			
+			return newDepartment;  
+		}
+		public String consultDepartment (int department) {
+			
+			Department dept = typeDepartment(department);
+			
+			String msg="======"+" COMUNIDADES EN EL DEPARTAMENTO DE "+dept+"======\n";
+			for ( int i = 0; i<storage.length; i++) { 
+				
+				if (storage[i] != null && storage[i].getDepartment().equals(dept)) {  // Primero verifica si es null
+					msg +=(i+1)+")."+storage[i].getComunity().toString() + "\n";
+				}
+				
+			}
+			return msg;
+		}
 		
+		
+		public Problems typeProblems (int problem) {
+			
+			Problems newTypeProblem = Problems.FALTA_DE_HOSPITAL;
+		
+			switch(problem){
+				
+				case 1:
+					newTypeProblem = Problems.FALTA_DE_HOSPITAL;
+				break;
+				
+				case 2:
+					newTypeProblem = Problems.FALTA_DE_ESCUELA;
+				break;
+				
+				case 3:
+					newTypeProblem = Problems.FALTA_DE_AGUA_POTABLE;
+				break;
+				
+				case 4:
+					newTypeProblem = Problems.FALTA_DE_ACCESO_A_UNA_ALIMENTACION_BASICA;
+				break;
+				
+			}
+			
+			return newTypeProblem;  
+		}
+		
+		public String consultProblem (int problem) {
+			
+			Problems problm = typeProblems(problem);
+			
+			String msg="======"+" COMUNIDADES CON PROBLEMA DE "+problm+"======\n";
+			for ( int i = 0; i<storage.length; i++) { 
+				
+				if (storage[i] != null && storage[i].getComunity().getProblems().equals(problm)) {  // Primero verifica si es null
+					msg +=(i+1)+")."+storage[i].getComunity().toString() + "\n";
+				}
+				
+			}
+			return msg;
+		}
+		
+		public String consultNumberSpecies () {
+			
+			
+			
+			String msg="======"+" Lugar con mayor cantidad de especies"+"======\n";
+			for ( int i = 0; i<storage.length; i++) { 
+				int acum=0;
+				if (storage[i] != null && storage[i].calculateNumberSpecies()>acum) {  // Primero verifica si es null
+					msg +=(i+1)+")."+storage[i].getName() + "\n";
+				}
+				
+			}
+			return msg;
+		}
 		
 		public void createTestCases(){
 			storagePlace("Las hermosas", 2, 34, 2, "foto", 4323453);
+			storagePlace("Paramo", 2, 50, 1, "url", 5002202);
 			registerSpecieInPlace("Las hermosas","mariposa", 1,"mariposa.com",34);
-			registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920" );
+			registerSpecieInPlace("Paramo","Pensamiento", 2,"pensamiento.com",10);
+			registerComunityInPlace("Las hermosas","wayu", 2, 20, 1, "oscar", "39202920");
+			registerComunityInPlace("Paramo","Engora", 1, 30, 2, "uber", "31038453");
+			addProduct("wayu","manilla",90,2,1);
+			addProduct("wayu","chicha",40,1,1);
+			addProduct("Engora","chicha",30,1,1);
 		}
 		
 		

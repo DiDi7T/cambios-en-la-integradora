@@ -21,9 +21,9 @@ public class Product{
 		
 		
 		msg+= "Nombre:" + name;
-		msg += "\nPorcentaje: " + percentage;
+		msg += "\nPorcentaje de productos naturales empleados en su fabricación: %" +percentage;
 		msg += "\nTipo: " + type;
-		msg += "\nFabricacion: " + making;
+		msg += "\nHecho a mano: " + making;
 		
 		return msg;
 	}
